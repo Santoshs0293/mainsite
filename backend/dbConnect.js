@@ -1,22 +1,18 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-// mongoose.connect("mongodb:127.0.0.1:27017/Server5pm")
-// .then(()=>{
-//     console.log("Data Base is Connected!!!")
-// })
-// .catch(error=>{
-//     console.log(error)
-// })
+async function getConnect() {
+    try {
+        // If you're using an environment variable for the connection string
+        // await mongoose.connect(process.env.DBKEY);
 
+        // Corrected connection string without http:// and /Server
+        // Replace 127.0.0.1 with your actual MongoDB server IP if needed
+        await mongoose.connect("mongodb://127.0.0.1:27017/Server");
 
-async function getConnect(){
-    try{
-        // await mongoose.connect(process.env.DBKEY)
-        await mongoose.connect("mongodb://127.0.0.1:27017/Server")
-        console.log("Data Base is Connected!!!");
-    }
-    catch(error){
-        console.log(error);
+        console.log("Database is Connected!");
+    } catch (error) {
+        console.error("Error connecting to database:", error);
     }
 }
-getConnect()
+
+getConnect();
